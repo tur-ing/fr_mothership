@@ -1,0 +1,30 @@
+{
+  "name": "frisches_mothership",
+  "version": "0.0.1",
+  "description": "Frisches.de mothership",
+  "main": "server.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "frisches.de",
+    "mothership"
+  ],
+  "author": "Marcel Florian",
+  "license": "ISC",
+  "dependencies": {
+    "angular-material": "^1.0.8",
+    "angular-messages": "^1.5.5",
+    "angular-mocks": "^1.5.5",
+    "angular-route": "^1.5.5",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.15.1",
+    "cookie-parser": "^1.4.1",
+    "express": "^4.13.4",
+    "express-session": "^1.13.0",
+    "magento": "0.0.4",
+    "mongoose": "^4.4.17",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0"
+  }
+}

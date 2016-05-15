@@ -4,3 +4,8 @@ node_js:
   - "5.1"
   - "4"
   - "4.2"
+notifications:
+  slack:
+    rooms:
+      - frisches:u6xDE2UFlFJqyWZQPR3pXPm4#general
+      - frisches:u6xDE2UFlFJqyWZQPR3pXPm4#engineeringg

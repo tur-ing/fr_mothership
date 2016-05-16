@@ -1,12 +1,14 @@
-FROM node:argon
+FROM node:5.10.1
 
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+WORKDIR /home/frisches
 
-COPY package.json /usr/src/app/
-RUN npm install
+COPY . /home/frisches/mothership
 
-COPY . /usr/src/app/
+RUN cd ./mothership && npm install
+
+ENV NODE_ENV production
+
+WORKDIR /home/frisches/mothership
 
 EXPOSE 3000
 

@@ -18,6 +18,7 @@
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "magento": "0.0.4",
+    "mocha": "^2.4.5",
     "mongoose": "^4.4.17",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0"

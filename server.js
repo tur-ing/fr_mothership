@@ -6,6 +6,8 @@ var app = express();
 var passport = require('passport'), LocalStrategy = require('passport-local').Strategy;
 var MagentoAPI = require('magento');
 var mongoose = require('mongoose');
+var common = require('./common.js');
+var config = common.config();
 var configDB = require('./config/database.js');
 var magento = new MagentoAPI({
   host: 'localhost',
@@ -70,4 +72,5 @@ magento.login(function(err, sessId) {
 
 app.listen(3000, function () {
   console.log('Racing on port 3000');
+  console.log('Using mongoDB: ' + config.mongoUrl);
 });

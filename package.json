@@ -4,7 +4,9 @@
   "description": "Frisches.de mothership",
   "main": "server.js",
   "scripts": {
-    "test": "mocha test"
+    "test": "NODE_ENV=development mocha test",
+    "start-mothership": "NODE_ENV=production node server.js",
+    "dev-mothership": "NODE_ENV=development node server.js"
   },
   "author": "Marcel Florian",
   "dependencies": {

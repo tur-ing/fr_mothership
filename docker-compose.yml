@@ -1,0 +1,10 @@
+web:
+  image: frisches/fr_mothership
+  links:
+    - mongodb
+  ports:
+    - "3000:3000"
+mongodb:
+  image: mongo:latest
+  ports:
+    - "32768:27017"

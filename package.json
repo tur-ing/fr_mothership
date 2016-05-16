@@ -4,14 +4,9 @@
   "description": "Frisches.de mothership",
   "main": "server.js",
   "scripts": {
-    "test": "test"
+    "test": "mocha test"
   },
-  "keywords": [
-    "frisches.de",
-    "mothership"
-  ],
   "author": "Marcel Florian",
-  "license": "ISC",
   "dependencies": {
     "angular-material": "^1.0.8",
     "angular-messages": "^1.5.5",

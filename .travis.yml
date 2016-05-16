@@ -4,7 +4,7 @@ services:
   - docker
 node_js:
   - "5.1"
-before_install:
+after_success:
   - docker build -t frisches/fr_mothership .
   - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   - docker push frisches/fr_mothership

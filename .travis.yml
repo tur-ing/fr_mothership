@@ -4,5 +4,4 @@ node_js:
 notifications:
   slack:
     rooms:
-      - frisches:u6xDE2UFlFJqyWZQPR3pXPm4#general
       - frisches:u6xDE2UFlFJqyWZQPR3pXPm4#engineering

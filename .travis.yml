@@ -1,6 +1,14 @@
+sudo: required
 language: node_js
+services:
+  - docker
 node_js:
   - "5.1"
+before_install:
+  - docker build -t frisches/fr_mothership .
+  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker tag local-image:tagname frisches/fr_mothership:tagname
+  - docker push frisches/fr_mothership:tagname
 notifications:
   slack:
     rooms:

@@ -7,8 +7,7 @@ node_js:
 before_install:
   - docker build -t frisches/fr_mothership .
   - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-  - docker tag fr_mothership:v1 frisches/fr_mothership:v1
-  - docker push frisches/fr_mothership:v1
+  - docker push frisches/fr_mothership
 notifications:
   slack:
     rooms:

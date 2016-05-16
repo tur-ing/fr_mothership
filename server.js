@@ -2,7 +2,6 @@ var express = require('express');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var app = express();
 var passport = require('passport'), LocalStrategy = require('passport-local').Strategy;
 var MagentoAPI = require('magento');
 var mongoose = require('mongoose');
@@ -19,8 +18,12 @@ var magento = new MagentoAPI({
 
 mongoose.connect(configDB.url);
 
-passport.use(new LocalStrategy (
+/*passport.use(new LocalStrategy (
     function(username, password, done) {
+      if (username === "admin" && password === "admin")
+        return done(null, {name: "admin"});
+      return done(null, false, { message: 'Incorrect username.' });
+
       User.findOne({ username: username }, function(err, user) {
         if(err) { return done(err); }
         if(!user) {
@@ -31,20 +34,35 @@ passport.use(new LocalStrategy (
         }
         return done(null, user);
       });
+
+    }
+));*/
+
+passport.use(new LocalStrategy(
+    function(username, password, done) {
+      if (username === "admin" && password === "admin") // stupid example
+        return done(null, {name: "admin"});
+
+      return done(null, false, { message: 'Incorrect username.' });
     }
 ));
 
 passport.serializeUser(function(user, done) {
-  done(null, user.id);
+  done(null, user);
 });
 
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
-    done(err, user);
-  });
+passport.deserializeUser(function(user, done) {
+  done(null, user);
 });
 
+var auth = function(req, res, next){
+  if (!req.isAuthenticated())
+    res.send(401);
+  else
+    next();
+};
 
+var app = express();
 app.use(express.static('views'));
 app.use(cookieParser());
 app.use(bodyParser());
@@ -52,7 +70,26 @@ app.use(session({ secret: 'bvZ0k#0B02pTj@#ujN' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-require('./app/routes.js');
+app.get('/', function(req, res){
+  res.render('index.html');
+});
+
+app.get('/users', auth, function(req, res){
+  res.send([{name: "user1"}, {name: "user2"}]);
+});
+
+app.get('/loggedin', function(req, res) {
+  res.send(req.isAuthenticated() ? req.user : '0');
+});
+
+app.post('/login', passport.authenticate('local'), function(req, res) {
+  res.send(req.user);
+});
+
+app.post('/logout', function(req, res){
+  req.logOut();
+  res.send(200);
+});
 
 var magentoCallback = function(data) {
   console.log('Got data: ' + data);

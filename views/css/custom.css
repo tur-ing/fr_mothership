@@ -1,0 +1,21 @@
+.icons-top {
+    color: #fff;
+}
+
+.fr-icons {
+    padding-top: 10px;
+    font-size: 24px;
+}
+
+.fr-icon {
+    vertical-align: middle;
+}
+
+.loginBox {
+    max-width:  90%;
+    width: 500px
+}
+
+.stretch input  {
+    width: 100%
+}

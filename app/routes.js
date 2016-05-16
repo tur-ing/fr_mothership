@@ -1,27 +1,29 @@
 module.exports = function(app, passport) {
-
-    app.get('/', function(req, res) {
-        res.render('index.html');
+    
+    app.get('/', function(req, res){
+        res.render('index', { title: 'Express' });
     });
 
-    app.get('/login', function(req, res) {
-        res.render('login.html', { message: req.flash('loginMessage') });
+    app.get('/users', auth, function(req, res){
+        res.send([{name: "user1"}, {name: "user2"}]);
+    });
+//==================================================================
+
+//==================================================================
+// route to test if the user is logged in or not
+    app.get('/loggedin', function(req, res) {
+        res.send(req.isAuthenticated() ? req.user : '0');
     });
 
-    app.get('/signup', function(req, res) {
-
-        res.render('signup.html', { message: req.flash('signupMessage') });
+// route to log in
+    app.post('/login', passport.authenticate('local'), function(req, res) {
+        res.send(req.user);
     });
 
-    app.get('/profile', isLoggedIn, function(req, res) {
-        res.render('profile.html', {
-            user : req.user
-        });
-    });
-
-    app.get('/logout', function(req, res) {
-        req.logout();
-        res.redirect('/');
+// route to log out
+    app.post('/logout', function(req, res){
+        req.logOut();
+        res.send(200);
     });
 };
 

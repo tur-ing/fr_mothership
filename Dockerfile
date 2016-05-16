@@ -12,4 +12,4 @@ WORKDIR /home/frisches/mothership
 
 EXPOSE 3000
 
-CMD ["npm run start-mothership"]
+CMD ["node", "/home/frisches/mothership/server.js"]
